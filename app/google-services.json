@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "660690926694",
+    "project_id": "noblepeople-d5740",
+    "storage_bucket": "noblepeople-d5740.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660690926694:android:59718a916c55bdb12401a7",
+        "android_client_info": {
+          "package_name": "com.noblepeople.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660690926694-2bamgk53qltve2o1gve3ii5cfe93nm2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYet2qjEy0pSyTs8GFsC7dYQdajtEm0Pg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660690926694-2bamgk53qltve2o1gve3ii5cfe93nm2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660690926694:android:b5b257f9568f1fe42401a7",
+        "android_client_info": {
+          "package_name": "com.segunfrancis.notekeeper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660690926694-2bamgk53qltve2o1gve3ii5cfe93nm2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYet2qjEy0pSyTs8GFsC7dYQdajtEm0Pg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660690926694-2bamgk53qltve2o1gve3ii5cfe93nm2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

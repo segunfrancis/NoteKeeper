@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    tools:context=".ui.detail.AddNoteFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/title_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.InputLayoutStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/title"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/title_field"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.InputFieldStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/description_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.InputLayoutStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:hint="@string/description"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@id/title_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/description_field"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.InputFieldStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:inputType="textCapSentences|textMultiLine"
+            android:minHeight="200dp"
+            android:maxHeight="400dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/default_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/default_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/default_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="@dimen/default_margin" />
+</androidx.constraintlayout.widget.ConstraintLayout>
