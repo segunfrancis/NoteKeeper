@@ -5,16 +5,13 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.work.Constraints
-import androidx.work.NetworkType
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
+import com.google.firebase.auth.FirebaseAuth
 import com.segunfrancis.notekeeper.R
 import com.segunfrancis.notekeeper.databinding.ActivityMainBinding
+import com.segunfrancis.notekeeper.util.initDataBackup
 import com.segunfrancis.notekeeper.util.viewBinding
-import com.segunfrancis.notekeeper.work_manager.NoteWorker
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -26,21 +23,17 @@ class MainActivity : AppCompatActivity() {
             R.id.fragmentContainerView
         )
     }
-    private val workManager: WorkManager by lazy { WorkManager.getInstance(this.applicationContext) }
+
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val constraints = Constraints.Builder()
-            .setRequiresBatteryNotLow(true)
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .build()
-        val request = PeriodicWorkRequestBuilder<NoteWorker>(1, TimeUnit.DAYS)
-            .setConstraints(constraints)
-            .addTag("BACKUP_WORKER_TAG")
-            .build()
-
+        if (firebaseAuth.currentUser?.uid != null) {
+            //initDataBackup()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

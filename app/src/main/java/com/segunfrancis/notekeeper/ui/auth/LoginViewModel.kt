@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.google.firebase.auth.FirebaseAuth
+import com.segunfrancis.notekeeper.data.repository.INoteRepository
 import com.segunfrancis.notekeeper.util.SingleLiveEvent
 import com.segunfrancis.notekeeper.util.isEmailValid
 import com.segunfrancis.notekeeper.util.isPasswordValid
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val auth: FirebaseAuth) : ViewModel() {
+class LoginViewModel @Inject constructor(private val repository: INoteRepository) : ViewModel() {
     private val _uiState = MutableLiveData<LoginStates>()
     val uiState: LiveData<LoginStates> = _uiState
 
@@ -56,28 +56,26 @@ class LoginViewModel @Inject constructor(private val auth: FirebaseAuth) : ViewM
     fun createUser(email: String, password: String) {
         _uiState.postValue(LoginStates.LoadingState)
         viewModelScope.launch(exceptionHandler) {
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        _action.postValue(LoginAction.Navigate(LoginFragmentDirections.toHomeFragment()))
-                    } else {
-                        _uiState.postValue(LoginStates.ErrorState(task.exception?.localizedMessage))
-                    }
-                }
+            kotlin.runCatching {
+                repository.createUser(email, password)
+            }.fold(onSuccess = {
+                _action.postValue(LoginAction.Navigate(LoginFragmentDirections.toHomeFragment()))
+            }, onFailure = {
+                _uiState.postValue(LoginStates.ErrorState(it.localizedMessage))
+            })
         }
     }
 
     fun loginUser(email: String, password: String) {
         _uiState.postValue(LoginStates.LoadingState)
         viewModelScope.launch(exceptionHandler) {
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        _action.postValue(LoginAction.Navigate(LoginFragmentDirections.toHomeFragment()))
-                    } else {
-                        _uiState.postValue(LoginStates.ErrorState(task.exception?.localizedMessage))
-                    }
-                }
+            kotlin.runCatching {
+                repository.loginUser(email, password)
+            }.fold(onSuccess = {
+                _action.postValue(LoginAction.Navigate(LoginFragmentDirections.toHomeFragment()))
+            }, onFailure = {
+                _uiState.postValue(LoginStates.ErrorState(it.localizedMessage))
+            })
         }
     }
 }

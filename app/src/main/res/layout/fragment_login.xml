@@ -86,6 +86,7 @@
         android:indeterminateBehavior="cycle"
         android:visibility="gone"
         tools:visibility="visible"
+        android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart" />

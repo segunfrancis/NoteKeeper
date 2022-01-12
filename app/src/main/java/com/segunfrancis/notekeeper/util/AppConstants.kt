@@ -10,4 +10,5 @@ object AppConstants {
     private const val DATA_STORE_NAME: String = "spotlight_pref"
     val SPOTLIGHT_PREF_KEY = booleanPreferencesKey(DATA_STORE_NAME)
     val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = DATA_STORE_NAME)
+    const val WORKER_TAG: String = "BACKUP_WORKER_TAG"
 }

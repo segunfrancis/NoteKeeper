@@ -15,4 +15,8 @@ interface INoteRepository {
     suspend fun deleteNote(note: NoteEntity)
 
     suspend fun deleteNoteById(id: Long)
+
+    suspend fun loginUser(email: String, password: String)
+
+    suspend fun createUser(email: String, password: String)
 }

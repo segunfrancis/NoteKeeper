@@ -17,18 +17,20 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.segunfrancis.notekeeper.R
 import com.segunfrancis.notekeeper.databinding.FragmentHomeBinding
 import com.segunfrancis.notekeeper.ui.model.NoteItem
 import com.segunfrancis.notekeeper.util.Destination
 import com.segunfrancis.notekeeper.util.displayDialog
+import com.segunfrancis.notekeeper.util.initDataBackup
 import com.segunfrancis.notekeeper.util.viewBinding
 import com.takusemba.spotlight.Spotlight
 import com.takusemba.spotlight.Target
 import com.takusemba.spotlight.shape.Circle
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -47,6 +49,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         })
     }
     private lateinit var spotlight: Spotlight
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        if (firebaseAuth.uid != null) {
+            requireActivity().initDataBackup()
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
